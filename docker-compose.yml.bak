@@ -1,0 +1,63 @@
+
+services:
+  # Frontend Next.js
+  web:
+    image: node:18-alpine
+    container_name: solar-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://backend:5000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    depends_on:
+      - backend
+    networks:
+      - solar-network
+
+  # Backend Flask
+  backend:
+    build: ./backend
+    container_name: solar-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+    networks:
+      - solar-network
+
+  # Evolution API
+  evolution-api:
+    image: atendai/evolution-api:latest
+    container_name: solar-evolution-api
+    ports:
+      - "8082:8080"  # Painel administrativo
+      - "8081:8081"  # API REST
+    env_file:
+      - ./evolution.env
+    volumes:
+      - evolution_data:/app/evolution/instances
+    restart: unless-stopped
+    networks:
+      - solar-network
+
+  # Redis (opcional, necessário para algumas funcionalidades)
+  redis:
+    image: redis:7-alpine
+    container_name: solar-redis
+    restart: unless-stopped
+    networks:
+      - solar-network
+
+volumes:
+  evolution_data:
+
+networks:
+  solar-network:
+    driver: bridge

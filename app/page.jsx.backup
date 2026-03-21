@@ -1,0 +1,344 @@
+'use client'
+
+import { useMemo } from "react"
+import Link from "next/link"
+
+function Badge({ children }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-gray-200 bg-white/70 px-3 py-1 text-xs font-medium text-gray-700 shadow-sm">
+      {children}
+    </span>
+  )
+}
+
+function SectionTitle({ eyebrow, title, subtitle }) {
+  return (
+    <div className="mx-auto max-w-2xl text-center">
+      {eyebrow ? (
+        <p className="text-sm font-semibold text-emerald-700">{eyebrow}</p>
+      ) : null}
+      <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        {title}
+      </h2>
+      {subtitle ? (
+        <p className="mt-4 text-base text-gray-600">{subtitle}</p>
+      ) : null}
+    </div>
+  )
+}
+
+function Card({ title, children, footer }) {
+  return (
+    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+      <div className="mt-3 text-sm text-gray-600">{children}</div>
+      {footer ? <div className="mt-6">{footer}</div> : null}
+    </div>
+  )
+}
+
+export default function Landing() {
+  const whatsappLink = useMemo(() => {
+    // ⚠️ TROQUE AQUI PELO SEU NÚMERO OFICIAL!
+    const phone = "5522992776695"
+    const text = encodeURIComponent(
+      "Oi! Quero ativar o consultor automático de energia solar no meu WhatsApp."
+    )
+    return `https://wa.me/${phone}?text=${text}`
+  }, [])
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="sticky top-0 z-30 border-b border-gray-100 bg-white/80 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-2">
+            <div className="h-9 w-9 rounded-xl bg-emerald-600" />
+            <div className="leading-tight">
+              <p className="text-sm font-semibold text-gray-900">
+                Consultor Solar no WhatsApp
+              </p>
+              <p className="text-xs text-gray-500">Plug & Play para empresas</p>
+            </div>
+          </div>
+
+          <div className="hidden items-center gap-6 md:flex">
+            <a className="text-sm text-gray-600 hover:text-gray-900" href="#como-funciona">
+              Como funciona
+            </a>
+            <a className="text-sm text-gray-600 hover:text-gray-900" href="#beneficios">
+              Benefícios
+            </a>
+            <a className="text-sm text-gray-600 hover:text-gray-900" href="#planos">
+              Planos
+            </a>
+            <a className="text-sm text-gray-600 hover:text-gray-900" href="#faq">
+              FAQ
+            </a>
+          </div>
+
+          <a
+            href={whatsappLink}
+            className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ativar no WhatsApp
+          </a>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-50 via-white to-white" />
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-14 md:grid-cols-2 md:py-20">
+          <div>
+            <div className="flex flex-wrap gap-2">
+              <Badge>Sem contrato anual</Badge>
+              <Badge>Ativação rápida</Badge>
+              <Badge>Pix ou Cartão</Badge>
+            </div>
+
+            <h1 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              Seu WhatsApp vira um vendedor de energia solar <span className="text-emerald-700">24h por dia</span>.
+            </h1>
+
+            <p className="mt-5 text-base text-gray-600 sm:text-lg">
+              Atenda leads na hora, qualifique automaticamente (conta de luz, tipo de rede, cidade)
+              e entregue para seu consultor só o cliente pronto pra avançar.
+            </p>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href={whatsappLink}
+                className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quero testar no WhatsApp
+              </a>
+              <a
+                href="#planos"
+                className="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
+              >
+                Ver planos
+              </a>
+            </div>
+
+            <p className="mt-4 text-xs text-gray-500">
+              O atendimento é natural e consultivo — sem "cara de robô".
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+            <p className="text-sm font-semibold text-gray-900">Exemplo de conversa</p>
+            <div className="mt-4 space-y-3 text-sm">
+              <div className="rounded-2xl bg-gray-50 p-4 text-gray-800">
+                Oi! Tudo bem? Sou da equipe aqui da sua empresa. Posso te ajudar a entender quanto você pode economizar com energia solar?
+              </div>
+              <div className="ml-8 rounded-2xl bg-emerald-600 p-4 text-white">
+                Minha conta vem uns R$ 650.
+              </div>
+              <div className="rounded-2xl bg-gray-50 p-4 text-gray-800">
+                Perfeito. Nessa faixa normalmente dá pra reduzir até 90%. É casa ou empresa? E sua rede é mono, bi ou trifásica?
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-3 text-xs">
+              <div className="rounded-2xl border border-gray-200 p-3">
+                <p className="font-semibold text-gray-900">Qualifica</p>
+                <p className="mt-1 text-gray-600">conta, rede, cidade, tipo de imóvel</p>
+              </div>
+              <div className="rounded-2xl border border-gray-200 p-3">
+                <p className="font-semibold text-gray-900">Entrega pronto</p>
+                <p className="mt-1 text-gray-600">resumo pro consultor fechar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dor / Benefícios */}
+      <section id="beneficios" className="border-t border-gray-100 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-14">
+          <SectionTitle
+            eyebrow="Feito para empresas solares"
+            title="Pare de perder lead por demora no WhatsApp"
+            subtitle="O consultor automático responde rápido, educa o cliente e coleta os dados certos para orçamento."
+          />
+
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <Card title="Resposta imediata">
+              Lead de energia solar esfria rápido. Aqui ele é atendido em segundos, 24/7.
+            </Card>
+            <Card title="Qualificação automática">
+              Coleta conta de luz, mono/bi/tri, cidade e urgência. Classifica em quente/morno/frio.
+            </Card>
+            <Card title="Menos tempo com curiosos">
+              Seu time foca em quem tem perfil de compra. O resto fica no relacionamento e follow-up.
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Como funciona */}
+      <section id="como-funciona" className="border-t border-gray-100 bg-gray-50">
+        <div className="mx-auto max-w-6xl px-4 py-14">
+          <SectionTitle
+            eyebrow="Como funciona"
+            title="Ativa em 3 passos"
+            subtitle="Tudo acontece pelo WhatsApp — do primeiro contato ao início da personalização."
+          />
+
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <Card
+              title="1) O lead chama no WhatsApp"
+            >
+              A conversa começa normal. O agente conduz como consultor, sem linguagem robótica.
+            </Card>
+            <Card title="2) O agente entende e qualifica">
+              Ele identifica a dor, explica benefícios e coleta os dados certos para simulação.
+            </Card>
+            <Card title="3) Seu consultor recebe o resumo">
+              Lead chega com contexto, classificação e próximos passos sugeridos.
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Planos */}
+      <section id="planos" className="border-t border-gray-100 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-14">
+          <SectionTitle
+            eyebrow="Planos"
+            title="Escolha o nível de automação"
+            subtitle="Você pode começar simples e evoluir conforme o volume de leads."
+          />
+
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <Card
+              title="Básico"
+              footer={
+                <a
+                  href={whatsappLink}
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ativar (Pix/Cartão)
+                </a>
+              }
+            >
+              <ul className="mt-3 list-disc space-y-2 pl-5">
+                <li>Atendimento 24/7</li>
+                <li>Respostas às dúvidas comuns</li>
+                <li>Coleta dados básicos (nome/cidade)</li>
+                <li>Base inicial com conteúdo da empresa</li>
+              </ul>
+            </Card>
+
+            <Card
+              title="Pro"
+              footer={
+                <a
+                  href={whatsappLink}
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-black"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ativar (Pix/Cartão)
+                </a>
+              }
+            >
+              <ul className="mt-3 list-disc space-y-2 pl-5">
+                <li>Tudo do Básico</li>
+                <li>Coleta conta de luz + mono/bi/tri</li>
+                <li>Classifica lead (quente/morno/frio)</li>
+                <li>Resumo pronto para o consultor</li>
+              </ul>
+            </Card>
+
+            <Card
+              title="Vendas"
+              footer={
+                <a
+                  href={whatsappLink}
+                  className="inline-flex w-full items-center justify-center rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Falar com a equipe
+                </a>
+              }
+            >
+              <ul className="mt-3 list-disc space-y-2 pl-5">
+                <li>Tudo do Pro</li>
+                <li>Follow-up automático</li>
+                <li>Agendamento e métricas</li>
+                <li>Objeções e persuasão</li>
+              </ul>
+            </Card>
+          </div>
+
+          <p className="mt-6 text-center text-xs text-gray-500">
+            Valores podem variar conforme volume e integrações (CRM/agenda).
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="border-t border-gray-100 bg-gray-50">
+        <div className="mx-auto max-w-6xl px-4 py-14">
+          <SectionTitle
+            eyebrow="FAQ"
+            title="Perguntas comuns"
+            subtitle="Respostas rápidas para as dúvidas que mais travam a decisão."
+          />
+
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <Card title="Isso substitui meu vendedor?">
+              Não. Ele faz a parte repetitiva e a qualificação. Seu consultor entra na hora certa pra fechar.
+            </Card>
+            <Card title="Precisa mexer no meu site?">
+              Não. A ativação e configuração são feitas pelo WhatsApp.
+            </Card>
+            <Card title="O pagamento é seguro?">
+              Sim. Pix e cartão via Mercado Pago, com confirmação automática.
+            </Card>
+            <Card title="Em quanto tempo fica pronto?">
+              Começa a funcionar rápido. Após o pagamento, coletamos seus dados e personalizamos o atendimento.
+            </Card>
+          </div>
+
+          <div className="mt-10 flex justify-center">
+            <a
+              href={whatsappLink}
+              className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Começar agora no WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-100 bg-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-8 md:flex-row">
+          <p className="text-xs text-gray-500">
+            © {new Date().getFullYear()} Consultor Solar no WhatsApp. Todos os direitos reservados.
+          </p>
+          <div className="flex items-center gap-4 text-xs text-gray-500">
+            <a className="hover:text-gray-900" href={whatsappLink} target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
+            <Link className="hover:text-gray-900" href="/configuracao">
+              Área do cliente
+            </Link>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}

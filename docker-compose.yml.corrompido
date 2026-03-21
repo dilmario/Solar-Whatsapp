@@ -1,0 +1,134 @@
+
+services:
+  web:
+    image: node:18-alpine
+    container_name: solar-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://backend:5000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    depends_on:
+      - backend
+    networks:
+      - solar-network
+
+  backend:
+    build: ./backend
+    container_name: solar-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - postgres
+    networks:
+      - solar-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: solar-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=evolution_user
+      - POSTGRES_PASSWORD=8bF2kL9xPq5vR1mZ4nS7wT0yA3jC6hE8
+      - POSTGRES_DB=evolution_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - solar-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U evolution_user -d evolution_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  evolution-api:
+    image: atendai/evolution-api:latest
+    container_name: solar-evolution-api
+    ports:
+      - "8082:8080"
+      - "8081:8081"
+    env_file:
+      - ./evolution.env
+    environment:
+      - DB_CONNECTION=postgres
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=evolution_db
+      - DB_USERNAME=evolution_user
+      - DB_PASSWORD=8bF2kL9xPq5vR1mZ4nS7wT0yA3jC6hE8
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - evolution_instances:/app/evolution/instances
+    restart: unless-stopped
+    networks:
+      - solar-network
+
+evolution-api:
+    image: atendai/evolution-api:latest
+    container_name: solar-evolution-api
+    ports:
+      - "8082:8080"
+      - "8081:8081"
+    environment:
+      - DB_CONNECTION=postgres
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=evolution_db
+      - DB_USERNAME=evolution_user
+      - DB_PASSWORD=evolution_pass_123
+      - INSTANCE_NAME=Consultor_Solar
+      - ENABLED=true
+      - CONNECTION_TYPE=meta
+      - WEBHOOK_URL=http://192.168.0.30:5000/evolution-webhook
+      - WEBHOOK_GLOBAL_ENABLED=true
+      - META_ACCESS_TOKEN=EAANBre2P9qYBQsgwFLs4WVq7XOT8Ms5I6Bq7MrYQdVBdxvn2mLnnHBSaqJu8edlmcde05cIDWfNZCVVj1OIqE9AlqWrnQWkrxfpzwwjESrBQFCnrerTq7ycus57qrF7FbtBImxDOnsr8RC0VCnSjZA7Miy1bbdxdCN5sC0tXIruXcMhATJO8GeP9eWgczGpoNukjetNWd6oZBZBN63h4bzhrMGV7NIKgoF9RvbCdURwzZCyZBdB35eQg3RHZBpU864dv2UsWFuxcuqBXgfmemYCemoZD
+      - META_PHONE_NUMBER_ID=947607651775347
+      - META_WABA_ID=1611593676651684
+      - META_APP_ID=916640200914598
+      - META_API_VERSION=v18.0
+      - REDIS_ENABLED=true
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - LOG_LEVEL=info
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - evolution_instances:/app/evolution/instances
+    restart: unless-stopped
+    networks:
+      - solar-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: solar-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - solar-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  evolution_instances:
+
+networks:
+  solar-network:
+    driver: bridge
