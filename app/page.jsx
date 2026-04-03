@@ -249,7 +249,7 @@ export default function Landing() {
                rel="noopener noreferrer"
              >
                <MessageCircle size={16} className="mr-2" />
-               Ativar Agora
+               Teste Grátis
              </a>
            </div>
 
@@ -294,7 +294,7 @@ export default function Landing() {
                    rel="noopener noreferrer"
                  >
                    <MessageCircle size={16} className="mr-2" />
-                   Ativar Agora
+                   Teste Grátis
                  </a>
                </div>
              </nav>
@@ -304,7 +304,7 @@ export default function Landing() {
      </header>
 
      {/* Hero Section */}
-     <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50 to-white py-12 md:py-20">
+     <section className="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/40 to-white py-16 md:py-24">
        <div className="absolute inset-0 -z-10">
          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-100 via-white to-white"></div>
        </div>
@@ -319,12 +319,12 @@ export default function Landing() {
                <Badge>Sem contrato anual</Badge>
              </div>
 
-             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-               Seu WhatsApp atendendo e qualificando clientes 24h por dia
+             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
+               Enquanto você dorme, seu consultor inteligente já está qualificando clientes de energia solar no WhatsApp.
              </h1>
 
-             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0">
-               Transforme sua equipe em um consultor solar inteligente que atende, qualifica e agenda reuniões automaticamente.
+             <p className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-7 py-4 text-base font-semibold text-white shadow-lg shadow-emerald-500/25 transition-all hover:scale-[1.02] hover:shadow-xl">
+               Ele responde automaticamente, faz perguntas estratégicas, identifica interesse real e só te chama quando o cliente está pronto para fechar.
              </p>
 
              {/* Stats */}
@@ -348,7 +348,7 @@ export default function Landing() {
                  rel="noopener noreferrer"
                >
                  <MessageCircle className="mr-2" size={20} />
-                 Ativar Agora
+                 Teste Grátis
                </a>
                <button
                  onClick={() => scrollToSection('planos')}
@@ -587,7 +587,7 @@ export default function Landing() {
                  target="_blank"
                  rel="noopener noreferrer"
                >
-                 Ativar Plano Premium
+                 Teste Grátis por 7 dias
                </a>
              </div>
            </Card>
@@ -708,7 +708,7 @@ export default function Landing() {
                rel="noopener noreferrer"
              >
                <MessageCircle className="mr-2" size={20} />
-               Ativar Agora
+               Teste Grátis
              </a>
              <button
                onClick={() => scrollToSection('planos')}
