@@ -320,10 +320,10 @@ export default function Landing() {
              </div>
 
              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
-               Enquanto você dorme, seu consultor inteligente já está qualificando clientes de energia solar no WhatsApp.
+               Você dorme, e seu consultor inteligente está qualificando clientes de energia solar no WhatsApp.
              </h1>
 
-             <p className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-all hover:bg-emerald-700">
+             <p className="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-all>
                Ele responde automaticamente, faz perguntas estratégicas, identifica interesse real e só te chama quando o cliente está pronto para fechar.
              </p>
 
