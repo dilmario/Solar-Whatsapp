@@ -323,7 +323,7 @@ export default function Landing() {
                Você dorme, e seu consultor inteligente está qualificando clientes de energia solar no WhatsApp.
              </h1>
 
-             <p className="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-all>
+             <p className="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-all">
                Ele responde automaticamente, faz perguntas estratégicas, identifica interesse real e só te chama quando o cliente está pronto para fechar.
              </p>
 
