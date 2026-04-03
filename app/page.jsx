@@ -319,7 +319,7 @@ export default function Landing() {
                <Badge>Sem contrato anual</Badge>
              </div>
 
-             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
+             <h1 className="text-4xl sm:text-4xl lg:text-4xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
                Enquanto você dorme, seu consultor inteligente já está qualificando clientes de energia solar no WhatsApp.
              </h1>
 
