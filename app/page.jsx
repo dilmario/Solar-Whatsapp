@@ -323,7 +323,7 @@ export default function Landing() {
                Você dorme, e seu consultor inteligente está qualificando clientes de energia solar no WhatsApp.
              </h1>
 
-             <p className="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-gray-900 shadow-sm transition-all">
+             <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0">
                Ele responde automaticamente, faz perguntas estratégicas, identifica interesse real e só te chama quando o cliente está pronto para fechar.
              </p>
 
@@ -667,7 +667,7 @@ export default function Landing() {
          <div className="mt-12 space-y-3">
            <FAQ
              question="Como funciona o agendamento automático?"
-             answer="O sistema integra com Calendly ou Google Agenda. Após a qualificação, o consultor envia um link de agendamento e envia lembretes automaticamente."
+             answer="O sistema integra com call.com. Após a qualificação, o consultor envia um link de agendamento e envia lembretes automaticamente."
            />
            <FAQ
              question="Posso cancelar a qualquer momento?"
