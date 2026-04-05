@@ -10,8 +10,9 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
-      # Aponta para o backend FastAPI (não mais Flask)
-      - NEXT_PUBLIC_API_URL=http://backend:8000
+      # API URL deve ser acessível pelo browser do usuário
+      # Em produção, use o domínio público: https://api.seusite.com
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
     volumes:
       - ./frontend:/app
       - /app/node_modules
