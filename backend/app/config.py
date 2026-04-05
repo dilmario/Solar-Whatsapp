@@ -35,6 +35,19 @@ class Settings(BaseSettings):
     followup_janela_3d: int = 3 * 24 * 60 * 60     # 3 dias
     followup_max_tentativas: int = 3                # após isso, marca como perdido
 
+    # ── Rate limiting ──────────────────────────────────────────────────────────
+    rate_limit_requests_per_minute: int = 60       # Limite por IP
+    rate_limit_webhook_per_minute: int = 120      # Limite para webhooks
+
+    # ── Modo humano / fallback ─────────────────────────────────────────────────
+    vendedor_whatsapp: str | None = None           # Número para escalonar leads quentes
+    lead_score_threshold_escalar: int = 85         # Score para notificar vendedor
+    modo_humano_timeout_minutos: int = 30          # Quanto tempo humano fica ativo
+    fallback_max_retries: int = 3                  # Tentativas IA antes de fallback
+
+    # ── Processamento de imagem ───────────────────────────────────────────────
+    permitir_analise_imagem: bool = True           # Análise com Gemini Vision
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
